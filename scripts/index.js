@@ -17,7 +17,6 @@ function addCard(name, link, deleteCard) {
 function deleteCard() {
   const card = event.target.closest('.card');
   card.remove();
-  console.log('123');
 }
 
 initialCards.forEach(function(element) {
