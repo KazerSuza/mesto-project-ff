@@ -10,7 +10,7 @@ function addCard(name, link, deleteCard) {
   cardElement.querySelector('.card__title').textContent = name;
   cardImage.alt = name;
   cardImage.src = link;
-  deleteButton.addEventListener('click',deleteCard);
+  deleteButton.addEventListener('click', deleteCard);
 
   return cardElement;
 }
