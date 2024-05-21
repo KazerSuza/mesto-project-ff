@@ -31,3 +31,4 @@ export const initialCards = [
       link: baikal,
     }
 ];
+
