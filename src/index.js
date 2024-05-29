@@ -1,9 +1,11 @@
-import { event } from 'jquery';
+import { error, event } from 'jquery';
 import './pages/index.css';
 import { initialCards } from "./scripts/cards.js";
 import { openPopup, closePopup } from './scripts/modal.js';
 import { addCard, likeCard, deleteCard } from './scripts/card.js';
+import { enableValidation, clearValidation } from './scripts/validation.js';
 
+//переменные
 const place = document.querySelector('.places__list');
 const formProfile = document.forms['edit-profile'];
 const formCard = document.forms['new-place'];
@@ -20,6 +22,9 @@ const placeInput = document.querySelector('.popup__input_type_card-name');
 const linkInput = document.querySelector('.popup__input_type_url');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__description');
+
+//функции
+enableValidation();
 
 function expandImage(name, src) {
   const popupImageContainer = document.querySelector('.popup_type_image');
@@ -52,9 +57,11 @@ initialCards.forEach((element) => {
   place.append(addCard(element.name, element.link, deleteCard, likeCard, expandImage));
   })
 
+//слушатели
 profileEditButton.addEventListener('click', () => {
   openPopup(popupProfileEdit);
   formProfile.reset();
+  clearValidation(popupProfileEdit);
   formProfile.elements.name.value = profileTitle.textContent;
   formProfile.elements.description.value = profileDescription.textContent;
 });
@@ -62,6 +69,7 @@ profileEditButton.addEventListener('click', () => {
 addCardButton.addEventListener('click', () => {
 openPopup(popupAddCard);
 formCard.reset();
+clearValidation(popupAddCard);
 });
 
 popupsClosures.forEach((popupsClosure) => {
