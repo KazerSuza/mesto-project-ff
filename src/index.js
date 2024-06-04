@@ -2,7 +2,7 @@ import { data, error, event } from 'jquery';
 import './pages/index.css';
 import { openPopup, closePopup } from './scripts/modal.js';
 import { addCard, likeFunction, deleteCard } from './scripts/card.js';
-import { enableValidation, clearValidation } from './scripts/validation.js';
+import { enableValidation, clearValidation, validationConfig } from './scripts/validation.js';
 import { getInitialCards, getUserInfo, changeUserName, postNewCard, changeAvatar } from './scripts/api.js';
 
 //переменные
@@ -29,7 +29,7 @@ const profileAvatar = document.querySelector('.profile__image');
 let userId = '';
 
 //функции
-enableValidation();
+enableValidation(validationConfig)
 
 Promise.all([getInitialCards(), getUserInfo()])
   .then(([initialCards, userInfo]) => {
@@ -108,7 +108,6 @@ function changeAvatarSubmit(event) {
   changeAvatar({ avatar: inputAvatar.value })
   .then((res) => {
     profileAvatar.style = `background-image: url(${res.avatar})`;
-    userAvatar = res.avatar;
   })
   .catch(error => {
     console.error('Error:', error);
@@ -132,13 +131,13 @@ function renderSaving(isSaving, popupActive) {
 avatarButton.addEventListener('click', () => {
   openPopup(popupAvatar);
   formAvatar.reset();
-  clearValidation(popupAvatar);
+  clearValidation(popupAvatar, validationConfig);
 })
 
 profileEditButton.addEventListener('click', () => {
   openPopup(popupProfileEdit);
   formProfile.reset();
-  clearValidation(popupProfileEdit);
+  clearValidation(popupProfileEdit, validationConfig);
   formProfile.elements.name.value = profileTitle.textContent;
   formProfile.elements.description.value = profileDescription.textContent;
 });
@@ -146,7 +145,7 @@ profileEditButton.addEventListener('click', () => {
 addCardButton.addEventListener('click', () => {
 openPopup(popupAddCard);
 formCard.reset();
-clearValidation(popupAddCard);
+clearValidation(popupAddCard, validationConfig);
 });
 
 popupsClosures.forEach((popupsClosure) => {
