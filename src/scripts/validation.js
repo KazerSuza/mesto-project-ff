@@ -1,13 +1,3 @@
-export const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error_active'
-}
-
-
 const checkInputValidity = (formElement, inputElement, validationConfig) => {
   if(inputElement.validity.patternMismatch) {
     inputElement.setCustomValidity(inputElement.dataset.errorMessage);
