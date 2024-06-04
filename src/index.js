@@ -1,10 +1,7 @@
 import "./pages/index.css";
 import { openPopup, closePopup } from "./scripts/modal.js";
 import { addCard, likeFunction, deleteCard } from "./scripts/card.js";
-import {
-  enableValidation,
-  clearValidation,
-} from "./scripts/validation.js";
+import { enableValidation, clearValidation } from "./scripts/validation.js";
 import {
   getInitialCards,
   getUserInfo,
@@ -39,13 +36,13 @@ const popupImage = document.querySelector(".popup__image");
 const popupImageCaption = document.querySelector(".popup__caption");
 const inputAvatar = document.querySelector(".popup__input-avatar");
 const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error_active'
-}
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input-error",
+  errorClass: "popup__input-error_active",
+};
 let userId = "";
 
 //функции
