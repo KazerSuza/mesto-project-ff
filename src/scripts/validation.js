@@ -27,7 +27,6 @@ const showInputError = (formElement, inputElement, errorMessage, validationConfi
   inputElement.classList.add(validationConfig.inputErrorClass);
   errorElement.classList.add(validationConfig.errorClass);
   errorElement.textContent = errorMessage;
-  console.log(errorMessage);
 }
 
 const hideInputError = (formElement, inputElement, validationConfig) => {
@@ -54,7 +53,6 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
 }
 
 export const enableValidation = (validationConfig) => {
-  console.log('arbeiten');
   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
  
   formList.forEach((formElement) => {
