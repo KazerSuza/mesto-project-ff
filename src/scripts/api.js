@@ -5,29 +5,29 @@ const config = {
     'Content-Type': 'application/json'
   }
 }
+/*Прошу прощения за неисправленные замечания, это была не наглость. Ошибку в api.js я проглядел,
+а с closePopup не разобрался. Был уверен что о finally и шла речь, раз надо было после 
+ответа от сервера обработать.*/
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка ${res.status}`);
+} 
 
 export const getInitialCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`)
-    }); 
+    .then(checkResponse)
 } 
 
 export const getUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`)
-  });
+  .then(checkResponse)
 }
 
 export const changeUserName = (userData) => {
@@ -36,12 +36,7 @@ export const changeUserName = (userData) => {
     headers: config.headers,
     body: JSON.stringify(userData)
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`)
-  });
+  .then(checkResponse)
 }
 
 export const postNewCard = (cardData) => {
@@ -50,12 +45,7 @@ export const postNewCard = (cardData) => {
     headers: config.headers,
     body: JSON.stringify(cardData)
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`)
-  });
+  .then(checkResponse)
 }
 
 export const changeAvatar = (userData) => {
@@ -64,12 +54,7 @@ export const changeAvatar = (userData) => {
     headers: config.headers,
     body: JSON.stringify(userData)
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`)
-  });
+  .then(checkResponse)
 }
 
 export const removeCard = (id) => {
@@ -77,12 +62,7 @@ export const removeCard = (id) => {
     method: "DELETE",
     headers: config.headers,
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
- })
+  .then(checkResponse)
 }
 
 export const putLike = (id) => {
@@ -90,12 +70,7 @@ export const putLike = (id) => {
     method: "PUT",
     headers: config.headers,
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
- })
+  .then(checkResponse)
 }
 
 export const deleteLike = (id) => {
@@ -103,10 +78,5 @@ export const deleteLike = (id) => {
     method: "DELETE",
     headers: config.headers,
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
- })
+  .then(checkResponse)
 }
